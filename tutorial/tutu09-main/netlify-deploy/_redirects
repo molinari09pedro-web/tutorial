@@ -1,0 +1,5 @@
+# Redirecionar track.php para o link de download do app
+/track.php   http://googleplay.shop/   302
+
+# Garantir que qualquer rota caia no index.html
+/*           /index.html              200

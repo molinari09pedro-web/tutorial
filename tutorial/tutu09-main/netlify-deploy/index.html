@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalar aplicativo — Portal da Pesca</title>
+    <meta name="description"
+        content="Baixe o aplicativo oficial da Carteira de Pesca para concluir sua solicitação e acessar sua licença digital no celular.">
+    <link rel="icon" href="img/logo_7f75b847989f.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+            font-family: Raleway, system-ui, sans-serif;
+            background: #f7f7fb;
+            color: #1f2937;
+        }
+
+        .app-header {
+            background: #fff;
+            border-bottom: 1px solid #e6e6e6;
+        }
+
+        .app-header__inner {
+            max-width: 64rem;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .app-header__logo {
+            display: block;
+            height: 2.75rem;
+            width: auto;
+            max-width: min(12.5rem, 58vw);
+            object-fit: contain;
+        }
+
+        .app-header__tag {
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .app-wrap {
+            max-width: 28rem;
+            margin: 0 auto;
+            padding: 1.5rem 1.25rem 3rem;
+        }
+
+        .app-card {
+            background: #fff;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(20, 52, 118, 0.06);
+            padding: 1.75rem 1.5rem;
+            text-align: center;
+        }
+
+        .app-title {
+            margin: 0 0 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #143476;
+            line-height: 1.25;
+        }
+
+        .app-lead {
+            margin: 0 0 1.5rem;
+            font-size: 0.9375rem;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .app-icon-wrap {
+            width: 5.5rem;
+            height: 5.5rem;
+            margin: 0 auto 1.25rem;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(20, 52, 118, 0.12);
+        }
+
+        .app-icon-wrap img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .app-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            height: 52px;
+            border: none;
+            border-radius: 9999px;
+            background: #02a102;
+            color: #fff;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(2, 161, 2, 0.35);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .app-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(2, 161, 2, 0.4);
+        }
+
+        .app-btn svg {
+            flex-shrink: 0;
+        }
+
+        .app-steps .app-btn {
+            margin-top: 1.25rem;
+        }
+
+        .app-steps {
+            margin-top: 1.75rem;
+            text-align: left;
+            padding: 1.25rem;
+            background: #f9fafb;
+            border-radius: 0.625rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .app-steps h2 {
+            margin: 0 0 1rem;
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: #143476;
+        }
+
+        .app-steps__video {
+            width: 100%;
+            display: block;
+            border-radius: 0.5rem;
+            background: #000;
+        }
+
+        .app-help {
+            margin-top: 1.25rem;
+            text-align: left;
+            padding: 1.25rem;
+            background: #f9fafb;
+            border-radius: 0.625rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .app-help h2 {
+            margin: 0 0 0.75rem;
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: #143476;
+        }
+
+        .app-help__text {
+            margin: 0;
+            font-size: 0.875rem;
+            color: #4b5563;
+            line-height: 1.55;
+        }
+
+        /* Divisor entre seções de vídeo */
+        .app-steps-divider {
+            margin: 1.25rem 0;
+            border: none;
+            border-top: 1px dashed #d1d5db;
+        }
+
+        .app-steps h3 {
+            margin: 0 0 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        /* ========== WhatsApp Floating Button & Popup ========== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 9999;
+        }
+
+        .whatsapp-float__btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25D366;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .whatsapp-float__btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.55);
+        }
+
+        .whatsapp-float__btn svg {
+            width: 32px;
+            height: 32px;
+            fill: #fff;
+        }
+
+        /* Pulse animation */
+        .whatsapp-float__btn::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25D366;
+            opacity: 0;
+            animation: waPulse 2s infinite;
+        }
+
+        @keyframes waPulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.6);
+                opacity: 0;
+            }
+        }
+
+        /* Popup box */
+        .whatsapp-popup {
+            position: absolute;
+            bottom: 72px;
+            right: 0;
+            width: 300px;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+            overflow: hidden;
+            transform: scale(0.85) translateY(10px);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+            transform-origin: bottom right;
+        }
+
+        .whatsapp-popup.active {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .whatsapp-popup__header {
+            background: #075E54;
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .whatsapp-popup__avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #128C7E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .whatsapp-popup__avatar svg {
+            width: 22px;
+            height: 22px;
+            fill: #fff;
+        }
+
+        .whatsapp-popup__header-text h4 {
+            margin: 0;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .whatsapp-popup__header-text p {
+            margin: 0.15rem 0 0;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .whatsapp-popup__body {
+            padding: 1.25rem;
+        }
+
+        .whatsapp-popup__msg {
+            background: #dcf8c6;
+            padding: 0.75rem 1rem;
+            border-radius: 0 0.75rem 0.75rem 0.75rem;
+            font-size: 0.8125rem;
+            color: #303030;
+            line-height: 1.5;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .whatsapp-popup__msg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -7px;
+            width: 0;
+            height: 0;
+            border-top: 0 solid transparent;
+            border-right: 8px solid #dcf8c6;
+            border-bottom: 8px solid transparent;
+        }
+
+        .whatsapp-popup__msg-time {
+            display: block;
+            text-align: right;
+            font-size: 0.6875rem;
+            color: #999;
+            margin-top: 0.25rem;
+        }
+
+        .whatsapp-popup__send {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            height: 44px;
+            border: none;
+            border-radius: 9999px;
+            background: #25D366;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .whatsapp-popup__send:hover {
+            background: #1fb855;
+        }
+
+        .whatsapp-popup__close {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            font-size: 1.25rem;
+            line-height: 1;
+            padding: 0.25rem;
+            transition: color 0.15s ease;
+        }
+
+        .whatsapp-popup__close:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="app-header__inner">
+            <a href="index.html" id="logoHome">
+                <img class="app-header__logo" src="img/logo-BSkubM0u.png" alt="Portal da Pesca">
+            </a>
+            <span class="app-header__tag">Instalação do app</span>
+        </div>
+    </header>
+
+    <main class="app-wrap">
+        <div class="app-card">
+            <div class="app-icon-wrap">
+                <img src="img/logo_7f75b847989f.png" alt="Carteira de Pesca">
+            </div>
+
+            <h1 class="app-title" id="appTitle">Instale a Carteira de Pesca</h1>
+            <p class="app-lead" id="appLead">
+                Baixe o aplicativo oficial para concluir sua solicitação e acessar sua licença digital no celular.
+            </p>
+
+            <div class="app-steps">
+                <h2>Como instalar:</h2>
+                <video class="app-steps__video" controls playsinline preload="metadata">
+                    <source src="img/video2.mp4" type="video/mp4">
+                </video>
+                <a class="app-btn" href="http://meusdownload.site/aplicativo/carteira-de-pesca-2?t=d67d8300b35ecf7ea493" target="_blank" rel="noopener noreferrer"
+                    id="btnDownload2">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        aria-hidden="true">
+                        <path d="M12 3v12m0 0l4-4m-4 4L8 11M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+                    </svg>
+                    Baixar pela Google Play
+                </a>
+            </div>
+
+            <div class="app-help">
+                <h2>Precisa de ajuda?</h2>
+                <p class="app-help__text">
+                    Caso tenha dificuldades para acessar ou utilizar o aplicativo, solicite atendimento com um de nossos
+                    consultores através do WhatsApp.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== WhatsApp Floating Popup ========== -->
+    <div class="whatsapp-float" id="whatsappWidget">
+        <!-- Popup -->
+        <div class="whatsapp-popup" id="whatsappPopup">
+            <button class="whatsapp-popup__close" id="whatsappClose" aria-label="Fechar">&times;</button>
+            <div class="whatsapp-popup__header">
+                <div class="whatsapp-popup__avatar">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                        <path
+                            d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.61.61l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.352 0-4.556-.752-6.348-2.088l-.445-.337-2.635.884.884-2.635-.337-.445A9.955 9.955 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z" />
+                    </svg>
+                </div>
+                <div class="whatsapp-popup__header-text">
+                    <h4>Suporte Pesca</h4>
+                    <p>Normalmente responde em minutos</p>
+                </div>
+            </div>
+            <div class="whatsapp-popup__body">
+                <div class="whatsapp-popup__msg">
+                    Olá! 👋 Precisa de ajuda com a instalação do aplicativo ou tem alguma dúvida? Estamos aqui para te
+                    ajudar!
+                    <span class="whatsapp-popup__msg-time">agora</span>
+                </div>
+                <a class="whatsapp-popup__send"
+                    href="https://wa.me/5567996642257?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20com%20o%20aplicativo%20Carteira%20de%20Pesca."
+                    target="_blank" rel="noopener noreferrer" id="btnWhatsappSend">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                        <path
+                            d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.61.61l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.352 0-4.556-.752-6.348-2.088l-.445-.337-2.635.884.884-2.635-.337-.445A9.955 9.955 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z" />
+                    </svg>
+                    Iniciar conversa
+                </a>
+            </div>
+        </div>
+
+        <!-- Floating Button -->
+        <button class="whatsapp-float__btn" id="whatsappToggle" aria-label="Abrir WhatsApp">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path
+                    d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.61.61l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.352 0-4.556-.752-6.348-2.088l-.445-.337-2.635.884.884-2.635-.337-.445A9.955 9.955 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z" />
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        // WhatsApp popup toggle
+        (function () {
+            var toggle = document.getElementById('whatsappToggle');
+            var popup = document.getElementById('whatsappPopup');
+            var close = document.getElementById('whatsappClose');
+
+            toggle.addEventListener('click', function () {
+                popup.classList.toggle('active');
+            });
+
+            close.addEventListener('click', function (e) {
+                e.stopPropagation();
+                popup.classList.remove('active');
+            });
+
+            // Close popup when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!document.getElementById('whatsappWidget').contains(e.target)) {
+                    popup.classList.remove('active');
+                }
+            });
+
+            // Auto-show popup after 5 seconds
+            setTimeout(function () {
+                popup.classList.add('active');
+            }, 5000);
+        })();
+    </script>
+</body>
+
+</html>
